@@ -1,14 +1,15 @@
 const mineflayer = require('mineflayer');
 const http = require('http');
 
-// 1. Tạo một web server nhỏ để Render không báo lỗi
+// 1. Tạo web server để Render báo "Live"
 http.createServer((req, res) => {
   res.write("Bot is running!");
   res.end();
 }).listen(process.env.PORT || 3000);
 
-// 2. Code con bot của bạn
+// 2. Hàm tạo bot với đầy đủ log thông báo
 function createBot() {
+    console.log("Bat dau ket noi vao server...");
     const bot = mineflayer.createBot({
         host: 'SuperSMP-h1dN.aternos.me',
         port: 31866,
@@ -18,11 +19,19 @@ function createBot() {
     });
 
     bot.on('spawn', () => {
-        console.log('Da vao game thanh cong');
+        console.log('>>> Bot da vao game thanh cong!');
     });
 
-    bot.on('end', () => {
-        console.log('Bot bi mat ket noi, dang khoi dong lai...');
+    bot.on('login', () => {
+        console.log('>>> Bot da dang nhap vao server!');
+    });
+
+    bot.on('error', (err) => {
+        console.log('>>> LOI KET NOI:', err);
+    });
+
+    bot.on('end', (reason) => {
+        console.log('>>> Bot bi dis (ly do:', reason, '), dang ket noi lai sau 5s...');
         setTimeout(createBot, 5000);
     });
 }
