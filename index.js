@@ -14,7 +14,7 @@ function createBot() {
         host: 'SuperSMP-h1dN.aternos.me',
         port: 31866,
         username: 'BotTreoNgonLanh',
-        version: '1.21.11',
+        version: '1.21.1',
         auth: 'offline'
     });
 
