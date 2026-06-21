@@ -2,10 +2,10 @@ const mineflayer = require('mineflayer');
 
 // Cấu hình thông tin server Aternos của bạn ở đây
 const config = {
-    host: 'TenServerCuaBan.aternos.me', // <--- THAY BẰNG IP SERVER CỦA BẠN
-    port: 25565,                         
+    host: 'SuperSMP-h1dN.aternos.me', // <--- THAY BẰNG IP SERVER CỦA BẠN
+    port: 31866,                         
     username: 'Bot_Treo_247',           // Tên con bot trong game
-    version: '1.20.1'                    // <--- THAY BẰNG PHIÊN BẢN SERVER CỦA BẠN
+    version: '1.21.11'                    // <--- THAY BẰNG PHIÊN BẢN SERVER CỦA BẠN
 };
 
 function createBot() {
