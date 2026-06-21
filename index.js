@@ -2,22 +2,17 @@ const mineflayer = require('mineflayer');
 
 const bot = mineflayer.createBot({
   host: 'SuperSMP-h1dN.aternos.me',
-  port: 31866, // Dùng đúng số Port hồi chiều bạn đã dùng
+  port: 31866,
   username: 'BotTreoNgonLanh',
-  version: '1.21.1'
+  version: '1.21.1',
+  auth: 'offline'
 });
 
 bot.on('spawn', () => {
-  console.log('Bot da vao game!');
-});
-
-bot.on('error', (err) => {
-  console.log('Loi roi:', err);
+  console.log('Da vao game thanh cong');
 });
 
 bot.on('end', () => {
-  console.log('Bot bi dis, dang ket noi lai...');
-  setTimeout(() => {
-    process.exit(1); // Lệnh này giúp Render tự khởi động lại quy trình
-  }, 5000);
+  console.log('Bot bi mat ket noi, dang tu khoi dong lai...');
+  process.exit(1); 
 });
