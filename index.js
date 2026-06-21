@@ -1,15 +1,10 @@
 const mineflayer = require('mineflayer');
 const http = require('http');
 
-// 1. Tạo web server để Render báo "Live"
-http.createServer((req, res) => {
-  res.write("Bot is running!");
-  res.end();
-}).listen(process.env.PORT || 3000);
+// Giữ cho Render luôn Live
+http.createServer((req, res) => { res.end("Bot is active"); }).listen(process.env.PORT || 3000);
 
-// 2. Hàm tạo bot với đầy đủ log thông báo
 function createBot() {
-    console.log("Bat dau ket noi vao server...");
     const bot = mineflayer.createBot({
         host: 'SuperSMP-h1dN.aternos.me',
         port: 31866,
@@ -19,21 +14,31 @@ function createBot() {
     });
 
     bot.on('spawn', () => {
-        console.log('>>> Bot da vao game thanh cong!');
+        console.log('Bot da vao game');
+        // Tự động di chuyển nhẹ mỗi 30 giây để tránh bị kick
+        setInterval(() => {
+            bot.setControlState('jump', true);
+            setTimeout(() => bot.setControlState('jump', false), 500);
+        }, 30000);
     });
 
-    bot.on('login', () => {
-        console.log('>>> Bot da dang nhap vao server!');
+    // Tự động hồi sinh nếu bot bị chết
+    bot.on('death', () => {
+        bot.emit('respawn');
+    });
+
+    // Tự động kết nối lại nếu bị văng
+    bot.on('end', () => {
+        console.log('Bot bi vang, dang ket noi lai sau 5s...');
+        setTimeout(createBot, 5000);
     });
 
     bot.on('error', (err) => {
-        console.log('>>> LOI KET NOI:', err);
+        console.log('Loi:', err);
     });
+}
 
-    bot.on('end', (reason) => {
-        console.log('>>> Bot bi dis (ly do:', reason, '), dang ket noi lai sau 5s...');
-        setTimeout(createBot, 5000);
-    });
+createBot();
 }
 
 createBot();
