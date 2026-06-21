@@ -1,6 +1,6 @@
 const config = {
     host: 'SuperSMP-h1dN.aternos.me', // BẮT BUỘC xóa dấu hai chấm và số 31866 ở đây đi
-    port: 25565,                      // Đổi thành số cổng gốc mặc định này
+    port: 31866,                      // Đổi thành số cổng gốc mặc định này
     username: 'BotTreoNgonLanh', 
     version: '1.21.1',
     auth: 'offline',
