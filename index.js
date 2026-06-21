@@ -11,7 +11,7 @@ server.listen(PORT, () => {
     console.log(`[Render] Cong web phu da mo tai cong ${PORT}`);
 });
 
-// 2. CẤU HÌNH BOT KHỚP VỚI SERVER MINECRAFT CỦA BẠN
+// 2. CẤU HÌNH BOT KHỚP VỚI SERVER MINECRAFT CỦA BẠN (ANH 1000026786.JPG)
 const config = {
     host: 'SuperSMP-h1dN.aternos.me', 
     port: 31866,                      
@@ -34,6 +34,28 @@ function createBot() {
     bot.on('spawn', () => {
         console.log(`[Bot] Da vao game thanh cong!`);
     });
+
+    bot.on('end', (reason) => {
+        console.log(`[Bot] Mat ket noi (${reason}). Thu lai sau 30s...`);
+        setTimeout(createBot, 30000);
+    });
+
+    bot.on('error', (err) => {
+        console.error(`[Loi] ${err.message}`);
+    });
+
+    // Nhảy mỗi 60s để không bị kick vì AFK
+    setInterval(() => {
+        if (bot && bot.entity) {
+            bot.setControlState('jump', true);
+            setTimeout(() => {
+                bot.setControlState('jump', false);
+            }, 500);
+        }
+    }, 60000);
+}
+
+createBot();
 
     bot.on('end', (reason) => {
         console.log(`[Bot] Mat ket noi (${reason}). Thu lai sau 30s...`);
