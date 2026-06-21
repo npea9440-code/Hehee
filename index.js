@@ -1,39 +1,11 @@
-const mineflayer = require('mineflayer');
-const http = require('http');
-
-// 1. TẠO CỔNG WEB ĐỂ RENDER KIỂM TRA (GIÚP KHÔNG BỊ TIMED OUT)
-const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Bot Minecraft dang hoat dong 24/7!\n');
-});
-
-// Render cung cấp cổng thông qua biến process.env.PORT, bắt buộc phải dùng nó
-const PORT = process.env.PORT || 10000;
-server.listen(PORT, () => {
-    console.log(`[Render] Cong web phu dang chay tai port: ${PORT}`);
-});
-
-// 2. CẤU HÌNH BOT MINECRAFT
 const config = {
-    host: 'SuperSMP-h1dN.aternos.me:31866',
-    port: 31866,
-    username: 'BotTreo247', // Đã đổi tên viết liền để tránh lỗi cache
+    host: 'SuperSMP-h1dN.aternos.me', // BẮT BUỘC xóa dấu hai chấm và số 31866 ở đây đi
+    port: 25565,                      // Đổi thành số cổng gốc mặc định này
+    username: 'BotTreoNgonLanh', 
     version: '1.21.1',
     auth: 'offline',
-    checkTimeoutInterval: 60000
+    checkTimeoutInterval: 60000 
 };
-
-function createBot() {
-    console.log('[Bot] Dang ket noi den server Minecraft...');
-    const bot = mineflayer.createBot(config);
-
-    bot.on('spawn', () => {
-        console.log('[Bot] Da vao game thanh cong va bat dau treo!');
-    });
-
-    bot.on('disconnect', (packet) => {
-        console.log('[Bot] Bi mat ket noi. Dang thu ket noi lai...');
-    });
 
     bot.on('error', (err) => {
         console.log('[Bot] Gap loi he thong: ', err);
