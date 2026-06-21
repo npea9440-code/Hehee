@@ -15,7 +15,7 @@ server.listen(PORT, () => {
 
 // 2. CẤU HÌNH BOT MINECRAFT
 const config = {
-    host: 'SuperSMP-h1dN.aternos.me',
+    host: 'SuperSMP-h1dN.aternos.me:31866',
     port: 31866,
     username: 'BotTreo247', // Đã đổi tên viết liền để tránh lỗi cache
     version: '1.21.1',
