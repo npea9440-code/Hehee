@@ -22,9 +22,3 @@ function createBot() {
 
 // Dòng cuối cùng phải là gọi hàm này
 createBot();
-    bot.on('error', (err) => {
-        console.log('Loi ket noi:', err);
-    });
-}
-
-start();
