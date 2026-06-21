@@ -43,19 +43,3 @@ function createBot() {
 
 // 3. Khởi chạy bot
 createBot();
-
-    bot.on('error', (err) => {
-        console.log('>>> LOI KET NOI:', err);
-    });
-
-    bot.on('end', (reason) => {
-        console.log('>>> Bot bi dis (ly do:', reason, '), dang ket noi lai sau 5s...');
-        setTimeout(createBot, 5000);
-    });
-  bot.on('spawn', () => console.log('Bot vao game'));
-  bot.on('end', () => setTimeout(start, 5000));
-  bot.on('error', (err) => console.log(err));
-}
-
-createBot();
-start();
