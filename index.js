@@ -13,7 +13,7 @@ function start() {
         host: 'SuperSMP-h1dN.aternos.me',
         port: 31866,
         username: 'BotTreoNgonLanh',
-        version: '1.21.11', // Đảm bảo phiên bản này trùng với server Aternos
+        version: '1.21.1', // Đảm bảo phiên bản này trùng với server Aternos
         auth: 'offline',
         checkTimeoutInterval: 60000 // Tăng thời gian chờ để không bị timeout sớm
     });
