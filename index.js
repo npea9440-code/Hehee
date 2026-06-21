@@ -1,22 +1,23 @@
-const config = {
-    host: 'SuperSMP-h1dN.aternos.me', // BẮT BUỘC xóa dấu hai chấm và số 31866 ở đây đi
-    port: 31866,                      // Đổi thành số cổng gốc mặc định này
-    username: 'BotTreoNgonLanh', 
-    version: '1.21.1',
-    auth: 'offline',
-    checkTimeoutInterval: 60000 
-};
+const mineflayer = require('mineflayer');
 
-    bot.on('error', (err) => {
-        console.log('[Bot] Gap loi he thong: ', err);
-    });
+const bot = mineflayer.createBot({
+  host: 'SuperSMP-h1dN.aternos.me',
+  port: 31866, // Dùng đúng số Port hồi chiều bạn đã dùng
+  username: 'BotTreoNgonLanh',
+  version: '1.21.1'
+});
 
-    // Tự động kết nối lại nếu bị server kick out
-    bot.on('end', () => {
-        console.log('[Bot] Ket noi ket thuc. Thu lai sau 30 giay...');
-        setTimeout(createBot, 30000);
-    });
-}
+bot.on('spawn', () => {
+  console.log('Bot da vao game!');
+});
 
-// Chạy kích hoạt bot
-createBot();
+bot.on('error', (err) => {
+  console.log('Loi roi:', err);
+});
+
+bot.on('end', () => {
+  console.log('Bot bi dis, dang ket noi lai...');
+  setTimeout(() => {
+    process.exit(1); // Lệnh này giúp Render tự khởi động lại quy trình
+  }, 5000);
+});
