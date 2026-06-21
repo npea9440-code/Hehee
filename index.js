@@ -1,39 +1,41 @@
 const mineflayer = require('mineflayer');
 const http = require('http');
 
-// 1. Tạo Web Server (Để Render giữ dịch vụ luôn Live)
+// Mở web server để Render không bị tắt
 http.createServer((req, res) => {
-    res.end("Bot is alive!");
+    res.end("Bot active");
 }).listen(process.env.PORT || 3000);
 
-// 2. Hàm tạo bot
-function createBot() {
-    console.log("--- DANG KHOI TAO KET NOI ---");
+console.log("Bat dau chuong trinh...");
+
+function startBot() {
+    console.log("Dang khoi tao bot...");
     
     const bot = mineflayer.createBot({
-        host: 'SuperSMP-h1dN.aternos.me', // IP Server của bạn
-        port: 31866,                      // Port Server của bạn
-        username: 'BotTreoNgonLanh',      // Tên bot
-        version: '1.21.1',                // Đổi thành phiên bản server của bạn
-        auth: 'offline'                   // Dùng cho server cracked
+        host: 'SuperSMP-h1dN.aternos.me',
+        port: 31866,
+        username: 'BotTreoNgonLanh',
+        version: '1.21.1',
+        auth: 'offline'
     });
 
-    bot.on('spawn', () => {
-        console.log(">>> BOT DA VAO GAME THÀNH CÔNG!");
-        // Anti-AFK: Nhảy mỗi 20 giây
-        setInterval(() => {
-            bot.setControlState('jump', true);
-            setTimeout(() => bot.setControlState('jump', false), 500);
-        }, 20000);
+    // Lắng nghe mọi sự kiện lỗi chi tiết
+    bot.on('login', () => console.log("Bot da dang nhap!"));
+    bot.on('spawn', () => console.log("Bot da vao the gioi!"));
+    bot.on('kicked', (reason) => console.log("Bot bi kick, ly do:", reason));
+    bot.on('error', (err) => console.log("Loi ket noi (Error):", err));
+    bot.on('end', (reason) => {
+        console.log("Ket noi ket thuc, thu lai sau 10s. Ly do:", reason);
+        setTimeout(startBot, 10000);
     });
+}
 
-    bot.on('kicked', (reason) => {
-        console.log(">>> BOT BI KICK, LY DO:", reason);
-    });
-
-    bot.on('error', (err) => {
-        console.log(">>> LOI KET NOI:", err);
-    });
+// Bắt đầu
+try {
+    startBot();
+} catch (e) {
+    console.log("Loi nghiem trong:", e);
+}
 
     bot.on('end', (reason) => {
         console.log(">>> KET NOI BI DONG. THU LAI SAU 10S...");
