@@ -8,7 +8,7 @@
   "server": {
     "ip": "SuperSMP-h1dN.aternos.me",
     "port": 31866,
-    "version": "1.21.11",
+    "version": "1.21.1",
     "try-creative": false
   },
   "position": {
@@ -19,7 +19,7 @@
   },
   "utils": {
     "auto-auth": {
-      "enabled": true,
+      "enabled": false,
       "password": "chalol78"
     },
     "anti-afk": {
