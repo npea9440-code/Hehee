@@ -23,5 +23,4 @@ function start() {
 }
 
 // 3. Dòng này là "nút khởi động" - BẮT BUỘC PHẢI CÓ
-createbot();
 start(); 
